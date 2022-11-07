@@ -1,30 +1,93 @@
 # I. User Managament
 
-## 1. File Configure
+## 1. Configuration File
 
-Entire basic information of user is in **/etc/passwd** file. Normal user have UID above 1000. System user have UID from 100 to 999
+### 1.1 User
+Configuration file of user is **/etc/passswd** file
 
-Entire basic information of group is in **/etc/group** file.
+```
+root:!:0:0::/:/usr/bin/ksh
+daemon:!:1:1::/etc:
+bin:!:2:2::/bin:
+sys:!:3:3::/usr/sys: 
+adm:!:4:4::/var/adm:
+uucp:!:5:5::/usr/lib/uucp: 
+guest:!:100:100::/home/guest:
+nobody:!:4294967294:4294967294::/:
+lpd:!:9:4294967294::/:
+lp:*:11:11::/var/spool/lp:/bin/false 
+invscout:*:200:1::/var/adm/invscout:/usr/bin/ksh
+nuucp:*:6:5:uucp login user:/var/spool/uucppublic:/usr/sbin/uucp/uucico
+paul:!:201:1::/home/paul:/usr/bin/sh
+jdoe:*:202:1:John Doe:/home/jdoe:/usr/bin/bash
+```
 
-In **/etc/shadow** file, it containts some information of user: encoded password, last password change, ...
+**/etc/passwd** file has seven fields:
+
+- User name
+
+- Encrypted password
+
+- User ID number (UID)
+
+- User's group ID number (GID)
+
+- Full name of the user (GECOS)
+
+- User home directory
+
+- Login shell
+
+Normal user have UID above 1000. System user have UID from 100 to 999
+
+### 1.2 Group
+
+Configuration file of user is **/etc/group** file.
+
+```
+staff:x:1:shadow,cjf
+employee:!:1000:hiepdx23
+```
+**/etc/group** file has four fields:
+
+- Group name
+
+- Encrypted password
+
+- Group ID number (GID)
+
+- Users of group
+
+### 1.3 Some infomation of user
+
+Configuration file abour information of user is **/etc/group** file. It contain some information about account user as encrypt password, date of last password change, minimum required days between password changes, maximum allowed days between password changes, ...
+
+### 1.4 /etc/skel
 
 File **/etc/skel** will be copied to **home** director of new user when we add a new user.
 
 ## 2. Command
 
+### 2.1 Add user and group
+
 `adduser` 
 Adding a new user. This command has some options. We can modify file configuration at **/etc/adduser.conf**. Ex: We can change bash from **/bin/bash** -> **/bin/sh**
-
-Ex: we can change current home directory when using **adduser --home**
-
-`deluser`
-Deleting a user.
 
 `addgroup` 
 Adding a new gorup.
 
+Ex: we can change current home directory when using **adduser --home**
+
+### 2.2 Delete user and group
+
+`deluser`
+Deleting a user.
+
+
 `delgroup`
 Deleting a group.
+
+### 2.3 Modify user and group
 
 `usermod`
 Modifying information of user. Ex: we can change current home directory of a user, GID, UID,... We also can lock a user account. When lock user by password, we'll see "!" charactor at password field in **/etc/shadow** file. Beside we can also protect a account when putting shell is **/bash/false** or putting expiration date.
@@ -34,6 +97,14 @@ Modifying information of group. Ex: we can change GID, ...
 
 `passwd`
 Changing user password. We also use this command to lock user account.
+
+### 2.4 Add and remove user to group
+
+`gpasswd` command and `usermod` command is used to add a user to group.
+
+`deluser [user] [group]` command is used to remove a user to group.
+
+
 
 
 
