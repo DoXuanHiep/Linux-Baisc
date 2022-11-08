@@ -163,6 +163,8 @@ default:other::---
 
 **mask** infomation above respresent maximum permission that different user and group may have it. As above, **user: kitty** and **group: friend** have **rwx** permission but **mask** have infomation is **r-x**. Therefore, **user: kitty** and **group: friend** just have **read and execute** permission (it is represented by **#effective:r-x**).
 
+**default** informations will be added when we create sub-folder of root-folder. When we create sub-file, informations of **default:user** and **default:group** will be added to permission of sub-file. Default **mask** and **other** information of file is **r--**. 
+
 ### 1.2 Modify permission
 
 `drwxrwsr-x 4294967295 hiepdx employee 2147549184 Sep 2 17:01 job`
@@ -173,11 +175,9 @@ When we want modify permission of user, group and other is written in third and 
 
 Having a advance command to modify permission of file and folder is:
 
-`setfacl`
+`setfacl [option] name_file or name_folder`
 
+Some option of setfacl:
 
-
-
-
-
-
+`setfacl -m ...` add acls <> `setfal -x g:g1 file_name` delete acl of group **g1**.
+`setfacl -b ...` remove all acls.`
