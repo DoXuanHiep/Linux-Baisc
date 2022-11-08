@@ -104,6 +104,78 @@ Changing user password. We also use this command to lock user account.
 
 `deluser [user] [group]` command is used to remove a user to group.
 
+# II. Permission
+
+Permission is a attribute of a folder and file. Normally, there are three basic permission is **reade**, **write** and **execute**. 
+
+In linux, three type of user (owner, group, other) can use file and folder. At permission field of file and folder, it has 9 bits to represent permission of three type of user (ex: 110110111 = rw-rw-rwx). First three bits represent permission of **owner**, next represent **group**, end represent **other**.
+
+## 1.Command
+
+### 1.1 View permission
+
+Basic command to view permission file or folder
+
+`ls -l name_file or name_folfer` 
+
+result:
+
+```
+drwxrwsr-x 4294967295 hiepdx employee 2147549184 Sep 2 17:01 job
+-rwxrwsr-x 4294967295 hiepdx employee 2147549184 Sep 2 17:01 job
+```
+
+Advance command to view permission file or folder
+
+`getfacl name_file or name_folfer`
+
+result:
+
+```
+# file: mydir
+
+# owner: quanta
+
+# group: quanta
+
+user::rwx
+
+user:kitty:rwx                  #effective:r-x
+
+group::r-x
+
+group:friends:rwx               #effective:r-x
+
+mask::r-x
+
+other::---
+
+default:user::rwx
+
+default:group::r-x
+
+default:group:friends:r-x
+
+default:mask::r-x
+
+default:other::---
+```
+
+**mask** infomation above respresent maximum permission that different user and group may have it. As above, **user: kitty** and **group: friend** have **rwx** permission but **mask** have infomation is **r-x**. Therefore, **user: kitty** and **group: friend** just have **read and execute** permission (it is represented by **#effective:r-x**).
+
+### 1.2 Modify permission
+
+`drwxrwsr-x 4294967295 hiepdx employee 2147549184 Sep 2 17:01 job`
+
+When we want modify permission of user, group and other is written in third and fourth filed (hiepdx employee), we use:
+
+`chmod`
+
+Having a advance command to modify permission of file and folder is:
+
+`setfacl`
+
+
 
 
 
