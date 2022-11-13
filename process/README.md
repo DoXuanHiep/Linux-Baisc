@@ -46,7 +46,7 @@ Some popular options of `ps`
 To print a process tree:
     ps -ejH
     ps axjf
-    
+
 To get info about threads:
     ps -eLf
     ps axms
@@ -64,3 +64,35 @@ To see every process with a user-defined format:
     ps axo stat,euid,ruid,tty,tpgid,sess,pgrp,ppid,pid,pcpu,comm
     ps -Ao pid,tt,user,fname,tmout,f,wchan
 ```
+
+## top command
+
+`top`
+
+Display processes that have dynamic state - not snapshot
+
+```
+top - 16:17:48 up 40 min,  1 user,  load average: 0.09, 0.05, 0.01
+Tasks: 219 total,   1 running, 218 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.1 sy,  0.0 ni, 99.9 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   2957.5 total,   2277.6 free,    293.3 used,    386.7 buff/cache
+MiB Swap:   1957.0 total,   1957.0 free,      0.0 used.   2497.4 avail Mem
+
+PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    1 root      20   0  168156  11496   8484 S   0.3   0.4   0:08.71 systemd
+    11 root      20   0       0      0      0 I   0.3   0.0   0:04.65 rcu_sched
+2423 root      20   0       0      0      0 I   0.3   0.0   0:04.42 kworker/0:0-events
+2883 root      20   0       0      0      0 I   0.3   0.0   0:00.38 kworker/u256:1-events_power_efficient
+3083 hiepdx23  20   0    9372   3976   3180 R   0.3   0.1   0:00.04 top
+    2 root      20   0       0      0      0 S   0.0   0.0   0:00.02 kthreadd
+    3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp
+    4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par_gp
+    6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri
+    8 root       0 -20       0      0      0 I   0.0   0.0   0:01.09 kworker/0:1H-kblockd
+    9 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mm_percpu_wq
+    10 root      20   0       0      0      0 S   0.0   0.0   0:00.11 ksoftirqd/0
+```
+
+## Modify processes
+
+## Kill processes
