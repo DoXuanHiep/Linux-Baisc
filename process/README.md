@@ -93,6 +93,50 @@ PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
     10 root      20   0       0      0      0 S   0.0   0.0   0:00.11 ksoftirqd/0
 ```
 
+Information of NI (NICE) field tells us about priority of this process (the lower this index, the higher the priority) -20 -> 20.
+
+Infomation of PR field is index of NI filed + 20. 
+
 ## Modify processes
 
+We can alter priority of the process by `renice` command.
+
+`renice [-n] priority [-g|-p|-u] identifier...`
+
+example:
+
+`renice -n +2/-2 -p 3504`
+
+The process have pid is 3504 will have new priority: +2/-2
+
 ## Kill processes
+
+We can kill the process by `kill` command
+
+`kill [options] <pid> [...]`
+
+example:
+
+`kill 3504`. The process have index: 3504 is killed.
+
+**Note: We have to use kill -9 to kill process carefully because using it many time can creates zombies process. When we use ***kill*** command, it will send SIGTERM, not SIGKILL. Let learn about ***7 signal*** to have more information **
+
+## State of process
+
+```
+USER        PID STAT    COMM
+hiepdx23    1392 S      systemd
+hiepdx23    1393 S      (sd-pam)
+hiepdx23    1398 S      bash
+hiepdx23    2963 S      sshd
+hiepdx23    2964 S      bash
+hiepdx23    4531 T      nano
+hiepdx23    4606 R      ps
+hiepdx23    4607 S      grep
+```
+
+We have three main state of user's process is S(sleep) T(stopped) R(running)
+
+- S: Wating for event to complete
+- T: Stopped, run `fg` command to run this process
+- R: Running
